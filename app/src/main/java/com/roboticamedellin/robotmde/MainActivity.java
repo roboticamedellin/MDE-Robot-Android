@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView textView;
     Button ctaLeft;
+    Button ctaRight;
 
     boolean flag = false;
 
@@ -18,24 +19,42 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ctaLeft = (Button) findViewById(R.id.cta_left);
         textView = (TextView) findViewById(R.id.text_message);
+        ctaLeft = (Button) findViewById(R.id.cta_left);
+        ctaRight = (Button) findViewById(R.id.cta_right);
 
         ctaLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                leftClicked();
+            }
+        });
 
+        ctaRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rightClicked();
             }
         });
     }
 
-    void setMessage() {
+    void leftClicked() {
         if (flag) {
             textView.setText("Hola");
         } else {
             textView.setText("hallo");
         }
-//        textView.setText(flag ? "Hola" : "Hallo");
+        textView.setText(flag ? "Hola" : "Hallo");
+        flag = !flag;
+    }
+
+    private void rightClicked() {
+        if (flag) {
+            textView.setText("UNO");
+        } else {
+            textView.setText("DOS");
+        }
+        textView.setText(flag ? "Hola" : "Hallo");
         flag = !flag;
     }
 
