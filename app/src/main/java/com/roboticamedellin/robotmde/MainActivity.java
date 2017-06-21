@@ -6,11 +6,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class MainActivity extends AppCompatActivity {
 
+    @BindView(R.id.text_message)
     TextView textView;
-    Button ctaLeft;
-    Button ctaRight;
 
     boolean flag = false;
 
@@ -18,27 +21,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        textView = (TextView) findViewById(R.id.text_message);
-        ctaLeft = (Button) findViewById(R.id.cta_left);
-        ctaRight = (Button) findViewById(R.id.cta_right);
-
-        ctaLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                leftClicked();
-            }
-        });
-
-        ctaRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rightClicked();
-            }
-        });
+        ButterKnife.bind(this);
     }
 
-    void leftClicked() {
+    @OnClick(R.id.cta_left)
+    public void leftClicked() {
         if (flag) {
             textView.setText("Hola");
         } else {
@@ -48,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
         flag = !flag;
     }
 
-    private void rightClicked() {
+    @OnClick(R.id.cta_right)
+    public void rightClicked() {
         if (flag) {
             textView.setText("UNO");
         } else {
