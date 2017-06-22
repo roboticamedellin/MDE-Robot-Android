@@ -33,7 +33,7 @@ public class CameraOpenCVActivity extends AppCompatActivity {
 
     private static final int CAMERA_REQUEST = 1888;
 
-    @BindView(R.id.image_button)
+    @BindView(R.id.photo_button)
     Button imageButton;
 
     @BindView(R.id.frame_image_view)
