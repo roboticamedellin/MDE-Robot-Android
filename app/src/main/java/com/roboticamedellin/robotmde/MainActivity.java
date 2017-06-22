@@ -15,8 +15,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.text_message)
     TextView textView;
 
-    boolean flag = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,24 +24,12 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.cta_left)
     public void leftClicked() {
-        if (flag) {
-            textView.setText("Hola");
-        } else {
-            textView.setText("hallo");
-        }
-        textView.setText(flag ? "Hola" : "Hallo");
-        flag = !flag;
+
     }
 
     @OnClick(R.id.cta_right)
     public void rightClicked() {
-        if (flag) {
-            textView.setText("UNO");
-        } else {
-            textView.setText("DOS");
-        }
-        textView.setText(flag ? "Hola" : "Hallo");
-        flag = !flag;
+
     }
 
 }
