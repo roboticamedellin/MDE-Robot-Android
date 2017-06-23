@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RobotMDE</string>
+    <string name="please_wait">Por favor espere…</string>
+
 </resources>

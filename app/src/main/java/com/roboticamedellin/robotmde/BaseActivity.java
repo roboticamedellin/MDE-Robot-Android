@@ -1,8 +1,15 @@
 package com.roboticamedellin.robotmde;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.roboticamedellin.robotmde.bluetooth.BluetoothController;
+
+import app.akexorcist.bluetotohspp.library.BluetoothState;
+import app.akexorcist.bluetotohspp.library.DeviceList;
 
 public class BaseActivity extends AppCompatActivity implements BluetoothController.ConnectedListener{
 
@@ -16,33 +23,33 @@ public class BaseActivity extends AppCompatActivity implements BluetoothControll
         setContentView(R.layout.activity_main);
 
         bluetoothController = new BluetoothController(this);
-
         bluetoothController.checkBluetoothState(this);
         bluetoothController.setConnectedListener(this);
 
-        showDialog();
+        showProgressDialog();
 
     }
 
-    void showDialog() {
-//        dialog = ProgressDialog.show(this, "", getString("Por favor espere..."), true);
+    private void showProgressDialog() {
+        dialog = ProgressDialog.show(this, "", getString(R.string.please_wait), true);
     }
 
-    public void hideWaitingOverlay() {
+    private void hideProgressDialog() {
         if (null != dialog) dialog.hide();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (bluetoothController.getBtConnect()) {
-            hideWaitingOverlay();
+        if (bluetoothController.isBluetoothConnected()) {
+            hideProgressDialog();
         }
     }
 
     public void sendMessage(String message) {
-        // TODO: Validate connection
-        bluetoothController.getBt().send(message + "\n", false);
+        if(bluetoothController.isBluetoothConnected()){
+            bluetoothController.getBluetoothSPP().send(message + "\n", false);
+        }
     }
 
     @Override
@@ -58,5 +65,31 @@ public class BaseActivity extends AppCompatActivity implements BluetoothControll
     @Override
     public void onDeviceConnectionFailed() {
 
+    }
+
+    @Override
+    public void loadDeviceList() {
+        Intent intent = new Intent(this, DeviceList.class);
+        startActivityForResult(intent, BluetoothState.REQUEST_CONNECT_DEVICE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case BluetoothState.REQUEST_CONNECT_DEVICE:
+                if (resultCode == Activity.RESULT_OK) {
+                    bluetoothController.connectToBluetoothDevice(data);
+                } else {
+                    finish();
+                }
+                break;
+            case BluetoothState.REQUEST_ENABLE_BT:
+                if (resultCode == Activity.RESULT_OK) {
+                    bluetoothController.connectToBluetoothService();
+                } else {
+                    finish();
+                }
+                break;
+        }
     }
 }
