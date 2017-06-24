@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.roboticamedellin.robotmde.MainActivity">
+
+    <TextView
+        android:id="@+id/text_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Hello World!" />
+
+    <Button
+        android:id="@+id/cta_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Left"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/cta_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Right"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
