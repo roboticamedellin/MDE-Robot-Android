@@ -11,10 +11,10 @@ int IN4 = 13;
 
 void setup(){
   BTserial.begin(9600);
-  pinMode (IN4, OUTPUT); 
+  pinMode (IN1, OUTPUT); 
+  pinMode (IN2, OUTPUT);
   pinMode (IN3, OUTPUT);
   pinMode (IN4, OUTPUT);
-  pinMode (IN3, OUTPUT);
 }
 void loop(){
   BTserialEvent();
