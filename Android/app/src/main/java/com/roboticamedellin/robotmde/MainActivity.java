@@ -1,6 +1,7 @@
 package com.roboticamedellin.robotmde;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -21,12 +22,24 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.cta_left)
     public void leftClicked() {
-        sendMessage("c");
+        sendMessage("s-1");
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                sendMessage("c-1");
+            }
+        }, 250);
     }
 
     @OnClick(R.id.cta_right)
     public void rightClicked() {
-        sendMessage("u");
+        sendMessage("s-1");
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                sendMessage("u-1");
+            }
+        }, 250);
     }
 
 }

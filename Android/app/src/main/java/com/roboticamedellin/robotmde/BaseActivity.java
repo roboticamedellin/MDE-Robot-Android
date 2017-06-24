@@ -23,8 +23,8 @@ public class BaseActivity extends AppCompatActivity implements BluetoothControll
         setContentView(R.layout.activity_main);
 
         bluetoothController = new BluetoothController(this);
-        bluetoothController.checkBluetoothState(this);
         bluetoothController.setConnectedListener(this);
+        bluetoothController.checkBluetoothState(this);
 
         showProgressDialog();
 
