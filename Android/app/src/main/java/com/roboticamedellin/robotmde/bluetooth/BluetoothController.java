@@ -57,25 +57,9 @@ public class BluetoothController implements BluetoothSPP.BluetoothConnectionList
         return bluetoothSPP;
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data, Activity activity) {
-        switch (requestCode) {
-            case BluetoothState.REQUEST_CONNECT_DEVICE:
-                if (resultCode == Activity.RESULT_OK) {
-                    bluetoothSPP.connect(data);
-                } else {
-                    showMessageIssue();
-                    activity.finish();
-                }
-                break;
-            case BluetoothState.REQUEST_ENABLE_BT:
-                if (resultCode == Activity.RESULT_OK) {
-                    bluetoothSPP.setupService();
-                    bluetoothSPP.startService(BluetoothState.DEVICE_OTHER);
-                    connectedListener.loadDeviceList();
-                } else {
-                    activity.finish();
-                }
-                break;
+    public void sendMessage(String message) {
+        if(isBluetoothConnected()){
+            bluetoothSPP.send(message + "\n", false);
         }
     }
 

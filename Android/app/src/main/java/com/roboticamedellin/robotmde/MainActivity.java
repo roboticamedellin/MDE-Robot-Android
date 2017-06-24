@@ -21,12 +21,12 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.cta_left)
     public void leftClicked() {
-
+        sendMessage("c");
     }
 
     @OnClick(R.id.cta_right)
     public void rightClicked() {
-
+        sendMessage("u");
     }
 
 }

@@ -149,3 +149,26 @@ public class BaseActivity extends AppCompatActivity implements BluetoothControll
 - Heredar en ```MainActivity.java``` de ```BaseActivity``` y no de ```AppCompatActivity```.
 
 ## Cuarta Parte:
+
+- Agregar el siguiente metodo en ```BaseActivity```:
+
+```java
+public class BluetoothController implements BluetoothSPP.BluetoothConnectionListener, BluetoothSPP.OnDataReceivedListener {
+    // ...
+    public void sendMessage(String message) {
+            bluetoothController.sendMessage(message);
+    }
+    // ...
+}
+```
+
+- En el ```MainActivity``` usar la comunicación por bluetooth:
+```java
+public class MainActivity extends BaseActivity {
+    // ...
+    @OnClick(R.id.cta_left)
+    public void leftClicked() {
+        sendMessage("c");
+    }
+}
+```

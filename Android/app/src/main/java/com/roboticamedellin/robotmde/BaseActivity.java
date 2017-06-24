@@ -47,24 +47,22 @@ public class BaseActivity extends AppCompatActivity implements BluetoothControll
     }
 
     public void sendMessage(String message) {
-        if(bluetoothController.isBluetoothConnected()){
-            bluetoothController.getBluetoothSPP().send(message + "\n", false);
-        }
+            bluetoothController.sendMessage(message);
     }
 
     @Override
     public void onDeviceConnected() {
-
+        hideProgressDialog();
     }
 
     @Override
     public void onDeviceDisconnected() {
-
+        showProgressDialog();
     }
 
     @Override
     public void onDeviceConnectionFailed() {
-
+        finish();
     }
 
     @Override
