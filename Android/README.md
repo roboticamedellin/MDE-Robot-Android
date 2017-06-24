@@ -153,7 +153,7 @@ public class BaseActivity extends AppCompatActivity implements BluetoothControll
 - Agregar el siguiente metodo en ```BaseActivity```:
 
 ```java
-public class BluetoothController implements BluetoothSPP.BluetoothConnectionListener, BluetoothSPP.OnDataReceivedListener {
+public class BaseActivity extends AppCompatActivity implements BluetoothController.ConnectedListener{
     // ...
     public void sendMessage(String message) {
             bluetoothController.sendMessage(message);
